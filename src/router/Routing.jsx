@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from '../components/pages/Home.jsx';
-import About from "../components/pages/About.jsx";
+import Projects from "../components/pages/Projects.jsx";
 import Layout from "../components/layout/Layout.jsx";
 
 const Routing = () => {
@@ -9,7 +9,7 @@ const Routing = () => {
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index  element={<Home />} />
-                    <Route path="/about" element={<About />} />
+                    <Route path="/projects" element={<Projects />} />
                     <Route path="*" element={<h1>Ruta no existe!</h1>} />
                 </Route>
             </Routes>

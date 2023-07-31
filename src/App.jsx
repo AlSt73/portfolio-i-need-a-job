@@ -1,4 +1,4 @@
-
+import '../src/assets/styles.css';
 import Routing from './router/Routing.jsx'
 
 
