@@ -1,14 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react'
+import  { useEffect, useRef, useState } from 'react'
 import { showData } from '../../utils/SupabaseMethod'
+import Loading from './Loading';
 
 
 const Carrousel = () => {
     const [imgs, setImgs] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     let arrows = useRef(null);
     let crImgs = useRef();
 
     useEffect(() => {
-        showData(setImgs);
+        setTimeout(() => {
+            showData(setImgs);
+            setIsLoading(false);
+        }, 1000)
     }, [])
 
     const arrowsSelected = (e) => {
@@ -39,19 +44,22 @@ const Carrousel = () => {
 
             <div className="carrousel">
                 <div className="cr-imgs" ref={crImgs}>
-                    {imgs.map(i => (
-                        <>
+                    {isLoading ?
 
-                            <img className="img" src={i.images[2]} alt='img1' />
-                        </>
-                    ))}
+                        <div className="loading-cr">
 
-                    {/* <img className="img" src='https://ykrvbqyufggkpouwaogp.supabase.co/storage/v1/object/sign/images/clima1.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvY2xpbWExLnBuZyIsImlhdCI6MTY4OTkwMzk0MSwiZXhwIjoxNzIxNDM5OTQxfQ.ruJU6cQiz1Hh72QsKrbaWNXcpdkHchTD7wDDayV83Ig&t=2023-07-21T01%3A44%3A20.904Z' alt='img2' />
-                    <img className="img" src='https://ykrvbqyufggkpouwaogp.supabase.co/storage/v1/object/sign/images/redsocial5.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvcmVkc29jaWFsNS5wbmciLCJpYXQiOjE2ODk1NzcyNDksImV4cCI6MTcyMTExMzI0OX0.HHAjijFQl-0--KUND3hLssWo-56xiXGVBlm01PvLsDg&t=2023-07-17T06%3A59%3A22.296Z' alt='img1' />
-                    <img className="img" src='https://ykrvbqyufggkpouwaogp.supabase.co/storage/v1/object/sign/images/preview2-v2.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvcHJldmlldzItdjIucG5nIiwiaWF0IjoxNjg5NTc3OTE4LCJleHAiOjE3MjExMTM5MTh9.tYeGcfsFqc80TiIu5k4r5QiE09PNZJGesJBHnjJ_36E&t=2023-07-17T07%3A10%3A31.972Z' alt='img2' />
-                    <img className="img" src='https://ykrvbqyufggkpouwaogp.supabase.co/storage/v1/object/sign/images/blogRandom1.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvYmxvZ1JhbmRvbTEucG5nIiwiaWF0IjoxNjg5NTc4NTIwLCJleHAiOjE3MjExMTQ1MjB9.vkx1LGTa_rnT46rJPT97SDzPtFKRUh6GHdszMtqoxzk&t=2023-07-17T07%3A20%3A33.567Z' alt='img2' />
-                    <img className="img" src='https://ykrvbqyufggkpouwaogp.supabase.co/storage/v1/object/sign/images/libreria4.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvbGlicmVyaWE0LnBuZyIsImlhdCI6MTY4OTU3NzUzOCwiZXhwIjoxNzIxMTEzNTM4fQ.m6BBMwyKSLGjCLjow0PIzCda5yjEi8e_J36nuXx5x7o&t=2023-07-17T07%3A04%3A12.118Z' alt='img2' />
-                    <img className="img" src='https://ykrvbqyufggkpouwaogp.supabase.co/storage/v1/object/sign/images/proyectoDuna2.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvcHJveWVjdG9EdW5hMi5wbmciLCJpYXQiOjE2ODk2MjkxODksImV4cCI6MTcyMTE2NTE4OX0.Hc9bn84Eic3uKu2cinOnNcfIf5k5aT2giHCFu8VrRT8&t=2023-07-17T21%3A25%3A03.474Z' alt='img1' /> */}
+                            <Loading />
+                        </div>
+                        : imgs ? imgs.map((i, k) => (
+
+                            <img key={k} className="img" src={i.images[2]} alt='img1' />
+
+                        ))
+                        :
+                        <h1>no hay imgs</h1>
+                        }
+
+
                 </div>
                 <ul className="arrows" ref={arrows}>
                     <li onClick={(e) => arrowsSelected(e)}><i className="fa-solid fa-circle"></i></li>

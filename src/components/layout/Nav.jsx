@@ -1,5 +1,5 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
+import SendEmail from './SendEmail'
 
 const Nav = () => {
     return (
@@ -8,7 +8,7 @@ const Nav = () => {
             <ul className="nav-list">
 
                 <Link to={'/projects'} ><li>Proyectos</li></Link>
-                <li>Contacto</li>
+                <SendEmail classStyle="" />
             </ul>
 
 

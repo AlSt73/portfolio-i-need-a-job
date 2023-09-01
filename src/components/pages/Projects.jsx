@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { showData } from '../../utils/SupabaseMethod'
+import { Link } from 'react-router-dom';
+import Loading from '../layout/Loading';
 
 const Projects = () => {
     const [projects, setProjects] = useState([]);
@@ -12,13 +14,16 @@ const Projects = () => {
     }, [])
     return (
         <section className="project-container">
-            <h1>Proyectos</h1>
+            <h1 className="title">Proyectos</h1>
             <article className="project-list">
                 {
-                    isLoading ? <h1>Cargando...</h1> :
-                        projects.map(p => {
+                    isLoading ? <Loading/> :
+                        projects.map((p,k) => {
                             return <ul key={p.id}>
-                                <img src={p.images[0]} alt={p.title} />
+                                <Link to={'/project/'+p.id}>
+                                    <img key={k} src={p.images[0]} alt={p.title} />
+
+                                </Link>
 
                             </ul>
                         })

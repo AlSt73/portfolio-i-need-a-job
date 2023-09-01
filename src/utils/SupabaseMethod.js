@@ -108,3 +108,13 @@ export const showData = async (setAllData) => {
 
     setAllData(data);
 }
+
+//select one project
+export const showOneProject = async (setOneProject,id) => {
+    const {data,error} = await supabase
+        .from('projects')
+        .select('*')
+        .eq('id', id)
+
+        setOneProject(data[0]);
+}

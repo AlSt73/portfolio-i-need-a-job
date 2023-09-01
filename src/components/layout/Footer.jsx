@@ -1,4 +1,3 @@
-import React from 'react'
 
 const Footer = () => {
     return (
@@ -7,9 +6,9 @@ const Footer = () => {
             <span>por <span id="author">Benjita</span> &copy;</span>
             <div className="social-media">
                 <ul className="list-media">
-                    <li>Linkedin</li>
-                    <li>Linkedin</li>
-                    <li>Linkedin</li>
+                    <li>🖤</li>
+                    <li>💙</li>
+                    <li>💜</li>
                 </ul>
             </div>
         </div>
